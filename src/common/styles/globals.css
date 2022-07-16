@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+/* ============ BASE ============= */
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+/*
+MEDIA QUERY MANAGER
+
+320px — 480px: Mobile devices
+481px — 768px: iPads, Tablets
+769px — 1024px: Small screens, laptops
+1025px — 1200px: Desktops, large screens
+1201px and more —  Extra large screens, TV
+*/
+
+html {
+  /* This defines what 1rem is */
+  font-size: 62.5%; /* 1 rem = 10px; 10px/16px = 62.5% */
+
+  font-family: 'Noto Sans JP, sans-serif';
+}
+
+/* max-width: 1200px */
+@media only screen and (max-width: 75rem) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
+/* max-width: 1024px */
+@media only screen and (max-width: 64rem) {
+  html {
+    font-size: 75%;
+  }
+}
+
+/* max-width: 768px */
+@media only screen and (max-width: 48rem) {
+  html {
+    font-size: 62.5%;
+  }
+}
+
+/* max-width: 480px */
+@media only screen and (max-width: 30rem) {
+  html {
+    font-size: 50%;
+  }
+}
+
+/* min-width: 1200px */
+@media only screen and (min-width: 75.1rem) {
+  html {
+    font-size: 100%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 3rem;
+}
+
+/* max-width: 1024px */
+@media only screen and (max-width: 64rem) {
+  body {
+    padding: 0;
+  }
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* ============ UTILS ============= */
+
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.absCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.u-center-text {
+  text-align: center !important;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important;
+}
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important;
+}
+
+/* max-width: 1024px */
+@media only screen and (max-width: 64rem) {
+  .u-margin-bottom-medium {
+    margin-bottom: 3rem !important;
+  }
+}
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important;
+}
+
+/* max-width: 1024px */
+@media only screen and (max-width: 64rem) {
+  .u-margin-bottom-big {
+    margin-bottom: 5rem !important;
+  }
+}
+
+.u-margin-top-big {
+  margin-top: 8rem !important;
+}
+.u-margin-top-huge {
+  margin-top: 10rem !important;
+}
+
+/* ============ VARIABLES ============= */
+
+:root {
+  --default-font-size: 1.6rem;
+
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-primary: #55c57a;
+  --color-primary-light: #7ed56f;
+  --color-primary-dark: #28b485;
+
+  --color-secondary-light: #ffb900;
+  --color-secondary-dark: #ff7730;
+
+  --color-tertiary-light: #2998ff;
+  --color-tertiary-dark: #5643fa;
+
+  --color-grey-light-1: #f7f7f7;
+  --color-grey-light-2: #eee;
+
+  --color-grey-dark: #777;
+  --color-grey-dark-2: #999;
+  --color-grey-dark-3: #333;
+
+  --grid-width: 114rem;
+  --gutter-vertical: 8rem;
+  --gutter-vertical-small: 6rem;
+  --gutter-horizontal: 6rem;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  80% {
+    transform: translateX(1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+/* ============ ANIMATION ============= */
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  80% {
+    transform: translateX(-1rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
