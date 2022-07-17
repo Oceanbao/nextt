@@ -18,6 +18,9 @@ const NavMenu = () => {
         <Link href="/hackernews">
           <MenuItem>HackerNews</MenuItem>
         </Link>
+        <Link href="/dyn">
+          <MenuItem>Dyn</MenuItem>
+        </Link>
       </MenuList>
     </Menu>
   )

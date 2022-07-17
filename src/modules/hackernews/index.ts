@@ -1,2 +1,1 @@
-import HackerNews from './HackerNews'
-export default HackerNews
+export { default } from './HackerNews'

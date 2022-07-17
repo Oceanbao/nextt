@@ -1,6 +1,4 @@
-import Home from '@modules/home'
-
-export default Home
+export { default } from '@modules/home'
 
 // Per-page layout
 // import Layout from '...'

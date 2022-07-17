@@ -1,2 +1,1 @@
-import HackerNews from '@modules/hackernews'
-export default HackerNews
+export { default } from '@modules/hackernews'

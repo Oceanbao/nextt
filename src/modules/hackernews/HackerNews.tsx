@@ -1,12 +1,13 @@
 import Head from 'next/head'
-import { Heading, Flex, Button, Box } from '@chakra-ui/react'
-import { ChevronDownIcon } from '@chakra-ui/icons'
+import { HStack, Heading, Flex, Button, Box, Slide, useDisclosure } from '@chakra-ui/react'
+import { CalendarIcon, ChatIcon, ChevronDownIcon, EmailIcon, SettingsIcon, StarIcon } from '@chakra-ui/icons'
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/react'
 
 import styles from './HackerNews.module.css'
 import ListItem from './components/ListItem'
 import NavMenu from '@common/components/Menu'
 import { useEffect, useState } from 'react'
+import { functionalUpdate } from 'react-query/lib/core/utils'
 
 export type TItem = {
   title: string

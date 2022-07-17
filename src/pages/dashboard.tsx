@@ -1,2 +1,1 @@
-import Dashboard from '@modules/dashboard'
-export default Dashboard
+export { default } from '@modules/dashboard'

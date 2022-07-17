@@ -12,7 +12,7 @@ const nextConfig = withBundleAnalyzer({
   // Styled Component upgrade to SWC compiler
   // ssr and displayName are configured by default
   styledComponents: true,
-  swcMiniy: true,
+  swcMinify: true,
 })
 
 module.exports = nextConfig
