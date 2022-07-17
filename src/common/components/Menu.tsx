@@ -15,8 +15,8 @@ const NavMenu = () => {
         <Link href="/dashboard">
           <MenuItem>Dashboard</MenuItem>
         </Link>
-        <Link href="/hackernews">
-          <MenuItem>HackerNews</MenuItem>
+        <Link href="/fakenews">
+          <MenuItem>FakeNews</MenuItem>
         </Link>
         <Link href="/dyn">
           <MenuItem>Dyn</MenuItem>
