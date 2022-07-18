@@ -2,19 +2,20 @@ import { useRouter } from 'next/router'
 import { ReactElement } from 'react'
 
 import MenuButtom from '@common/components/MenuBottom'
-import Page404 from '@modules/error'
 import { Alpha, Beta, Gamma, Delta } from '@modules/dyn'
+import { GetStaticProps, GetStaticPaths } from 'next'
+import Page404 from '@modules/error'
 
 const Page = () => {
-  const router = useRouter()
+  const { query } = useRouter()
 
-  return router.query.slug === 'alpha' ? (
+  return query.slug === 'alpha' ? (
     <Alpha />
-  ) : router.query.slug === 'beta' ? (
+  ) : query.slug === 'beta' ? (
     <Beta />
-  ) : router.query.slug === 'gamma' ? (
+  ) : query.slug === 'gamma' ? (
     <Gamma />
-  ) : router.query.slug === 'delta' ? (
+  ) : query.slug === 'delta' ? (
     <Delta />
   ) : (
     <Page404 />
@@ -35,3 +36,18 @@ Page.getLayout = function getLayout(page: ReactElement) {
 }
 
 export default Page
+
+const PATHS = ['alpha', 'beta', 'gamma', 'delta']
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: PATHS.map(p => ({ params: { slug: p } })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps: GetStaticProps = async context => {
+  return {
+    props: {},
+  }
+}
