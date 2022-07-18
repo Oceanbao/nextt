@@ -71,11 +71,11 @@ export default function MenuButtom() {
               <MenuItem icon={<ExternalLinkIcon />} command="⌘N">
                 New Window
               </MenuItem>
-              <MenuItem icon={<RepeatIcon />} command="⌘⇧N">
-                Open Closed Tab
+              <MenuItem icon={<RepeatIcon />} command="⌘⇧N" onClick={() => router.push('/dyn')}>
+                Dyn
               </MenuItem>
               <MenuItem icon={<EditIcon />} command="⌘O" onClick={() => router.push('/')}>
-                Open File...
+                Home
               </MenuItem>
             </MenuList>
           </Menu>

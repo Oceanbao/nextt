@@ -23,8 +23,6 @@ const Page = () => {
     triggerOnce: false,
   })
 
-  console.log(entry)
-
   // const [isInViewport, setIsInViewport] = useState(false);
 
   //console.log(window.innerHeight);
