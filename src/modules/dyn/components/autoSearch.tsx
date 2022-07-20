@@ -150,7 +150,7 @@ export default function AutoSearch() {
       </Head>
 
       <Text>SWAPI Name Search</Text>
-      {options !== undefined && (
+      {options !== undefined ? (
         <Select
           instanceId="autoSelect"
           closeMenuOnSelect={false}
@@ -159,6 +159,8 @@ export default function AutoSearch() {
           options={options}
           styles={colourStyles}
         />
+      ) : (
+        <span>Loading...</span>
       )}
     </Box>
   )
