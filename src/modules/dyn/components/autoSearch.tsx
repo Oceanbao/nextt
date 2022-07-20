@@ -1,22 +1,32 @@
 import { Box, Text } from '@chakra-ui/react'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
+// import { atom, useAtom } from 'jotai'
+// import { atomWithImmer } from 'jotai/immer'
+
 import chroma from 'chroma-js'
 import Select, { StylesConfig } from 'react-select'
 import { ColourOption } from './colourConfig'
 
-// const colourOptions: readonly ColourOption[] = [
-//   { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
-//   { value: 'blue', label: 'Blue', color: '#0052CC', isDisabled: true },
-//   { value: 'purple', label: 'Purple', color: '#5243AA' },
-//   { value: 'red', label: 'Red', color: '#FF5630', isFixed: true },
-//   { value: 'orange', label: 'Orange', color: '#FF8B00' },
-//   { value: 'yellow', label: 'Yellow', color: '#FFC400' },
-//   { value: 'green', label: 'Green', color: '#36B37E' },
-//   { value: 'forest', label: 'Forest', color: '#00875A' },
-//   { value: 'slate', label: 'Slate', color: '#253858' },
-//   { value: 'silver', label: 'Silver', color: '#666666' },
-// ];
+// const coloursAtom = atomWithImmer<string[]>([])
+
+// const atomWithLocalStorage = (key, initialValue) => {
+//   const getInitialValue = () => {
+//     const item = localStorage.getItem(key)
+//     if (item !== null) return JSON.parse(item)
+//     return initialValue
+//   }
+//   const baseAtom = atomWithImmer(getInitialValue())
+//   const derivedAtom = atom(
+//     (get) => get(baseAtom),
+//     (get, set, update) => {
+//       const nextValue = typeof update === 'function' ? update(get(baseAtom)) : update
+//       set(baseAtom, nextValue)
+//       localStorage.setItem(key, JSON.stringify(nextValue))
+//     }
+//   )
+//   return derivedAtom
+// }
 
 const COLOR = [
   '#00B8D9',
@@ -87,26 +97,35 @@ const fetchNames = async () => {
   return names
 }
 
-const getNames = () => {
-  let names: string[] | '' = JSON.parse(localStorage.getItem('starWarNames') ?? '')
-  if (names === '' || names.length === 0) {
-    fetchNames().then(res => {
-      names = res
-    })
-  }
-  localStorage.setItem('starWarNames', JSON.stringify(names))
-  return names as string[]
-}
-
 const randomColour = () => COLOR[Math.floor(Math.random() * COLOR.length)]
 
 export default function AutoSearch() {
   const [options, setOptions] = useState<ColourOption[]>()
+  const [names, setNames] = useState<string[]>()
 
   console.log('RENDER')
 
   useEffect(() => {
-    const names = getNames()
+    let namesStored = localStorage.getItem('starWarNames')
+    console.log('firstNS: ', namesStored)
+    if (namesStored === null) {
+      fetchNames().then(res => {
+        console.log('fetched: ', res)
+        localStorage.setItem('starWarNames', JSON.stringify(res))
+        setNames(res)
+      })
+    } else {
+      console.log('local: ', namesStored)
+      const names = JSON.parse(namesStored)
+      setNames(names)
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log('setOptions')
+    if (names === undefined || names.length === 0) return
+    console.log('setOptions OK')
+
     const colourOptions: ColourOption[] = []
 
     names.forEach((name, idx) => {
@@ -121,7 +140,7 @@ export default function AutoSearch() {
     })
 
     setOptions(colourOptions)
-  }, [])
+  }, [names])
 
   return (
     <Box h="20vh" p="0 0.5rem" display="flex" flexDir="column" justifyContent="center" alignItems="center">
