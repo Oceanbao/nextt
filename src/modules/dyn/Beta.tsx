@@ -1,6 +1,8 @@
 import ThemeToggle from '@layouts/core/ThemeToggle'
 import { Stack, SkeletonCircle, SkeletonText, Grid, Box, Heading } from '@chakra-ui/react'
 
+import AutoSearch from './components/autoSearch'
+
 export default function Beta() {
   return (
     <Grid gap="2rem" h="100vh">
@@ -9,6 +11,7 @@ export default function Beta() {
         BETA
       </Heading>
       <Stack>
+        <AutoSearch />
         {Array.from(Array(20).keys()).map(idx => (
           <Box key={idx} padding="6" boxShadow="lg" bg="white">
             <SkeletonCircle size="10" />

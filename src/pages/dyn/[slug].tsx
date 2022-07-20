@@ -46,8 +46,28 @@ export const getStaticPaths: GetStaticPaths = () => {
   }
 }
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {},
   }
 }
+
+// export const getStaticProps: GetStaticProps = async () => {
+//   const pageCount = 3
+//   let names: string[] = []
+
+//   for (let i = 0; i < pageCount; i++) {
+//     const resp = await fetch(`https://swapi.dev/api/people?page=${i + 1}`)
+//     const data = await resp.json()
+//     console.log(data.results)
+//     data.results.forEach((res: any) => names.push(res.name))
+//   }
+
+//   console.log(names)
+
+//   return {
+//     props: {
+//       names
+//     }
+//   }
+// }
