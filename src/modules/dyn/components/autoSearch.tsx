@@ -99,9 +99,25 @@ const fetchNames = async () => {
 
 const randomColour = () => COLOR[Math.floor(Math.random() * COLOR.length)]
 
+function handleSetOptions(names: string[], setOptions: (x: ColourOption[]) => void) {
+  const colourOptions: ColourOption[] = []
+
+  names.forEach((name, idx) => {
+    let option: ColourOption = {
+      value: name,
+      label: name,
+      color: randomColour(),
+    }
+    if (idx === 0) option = { ...option, isDisabled: true }
+    if (idx === 1) option = { ...option, isFixed: true }
+    colourOptions.push(option)
+  })
+
+  setOptions(colourOptions)
+}
+
 export default function AutoSearch() {
   const [options, setOptions] = useState<ColourOption[]>()
-  const [names, setNames] = useState<string[]>()
 
   console.log('RENDER')
 
@@ -112,35 +128,14 @@ export default function AutoSearch() {
       fetchNames().then(res => {
         console.log('fetched: ', res)
         localStorage.setItem('starWarNames', JSON.stringify(res))
-        setNames(res)
+        handleSetOptions(res, setOptions)
       })
     } else {
       console.log('local: ', namesStored)
       const names = JSON.parse(namesStored)
-      setNames(names)
+      handleSetOptions(names, setOptions)
     }
   }, [])
-
-  useEffect(() => {
-    console.log('setOptions')
-    if (names === undefined || names.length === 0) return
-    console.log('setOptions OK')
-
-    const colourOptions: ColourOption[] = []
-
-    names.forEach((name, idx) => {
-      let option: ColourOption = {
-        value: name,
-        label: name,
-        color: randomColour(),
-      }
-      if (idx === 0) option = { ...option, isDisabled: true }
-      if (idx === 1) option = { ...option, isFixed: true }
-      colourOptions.push(option)
-    })
-
-    setOptions(colourOptions)
-  }, [names])
 
   return (
     <Box h="20vh" p="0 0.5rem" display="flex" flexDir="column" justifyContent="center" alignItems="center">
