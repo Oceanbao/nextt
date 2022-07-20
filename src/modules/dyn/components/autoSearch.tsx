@@ -1,11 +1,11 @@
 import { Box, Text } from '@chakra-ui/react'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 // import { atom, useAtom } from 'jotai'
 // import { atomWithImmer } from 'jotai/immer'
 
 import chroma from 'chroma-js'
-import Select, { StylesConfig } from 'react-select'
+import Select, { StylesConfig, SelectInstance } from 'react-select'
 import { ColourOption } from './colourConfig'
 
 // const coloursAtom = atomWithImmer<string[]>([])
@@ -118,8 +118,16 @@ function handleSetOptions(names: string[], setOptions: (x: ColourOption[]) => vo
 
 export default function AutoSearch() {
   const [options, setOptions] = useState<ColourOption[]>()
+  const selectRef = useRef<SelectInstance<ColourOption, true>>(null)
 
   console.log('RENDER')
+
+  function selectFocus(e: KeyboardEvent) {
+    if (e.metaKey && e.key === 'k') {
+      e.preventDefault()
+      selectRef.current!.focus()
+    }
+  }
 
   useEffect(() => {
     let namesStored = localStorage.getItem('starWarNames')
@@ -135,6 +143,10 @@ export default function AutoSearch() {
       const names = JSON.parse(namesStored)
       handleSetOptions(names, setOptions)
     }
+
+    document.addEventListener('keydown', selectFocus)
+
+    return () => document.removeEventListener('keydown', selectFocus)
   }, [])
 
   return (
@@ -147,6 +159,7 @@ export default function AutoSearch() {
       <Text>SWAPI Name Search</Text>
       {options !== undefined ? (
         <Select
+          ref={selectRef}
           instanceId="autoSelect"
           closeMenuOnSelect={false}
           defaultValue={[options[0], options[1]]}
