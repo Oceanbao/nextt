@@ -1,23 +1,30 @@
 import ThemeToggle from '@layouts/core/ThemeToggle'
-import { Stack, SkeletonCircle, SkeletonText, Grid, Box } from '@chakra-ui/react'
-import MenuButtom from '@common/components/MenuBottom'
+import NavMenu from '@common/components/Menu'
+import RotateSquare from './components/RotateSquare'
+import ScratchText from './components/ScratchText'
+import FoldCard from './components/FoldCard'
+import SideMenu from './components/SideMenu'
+import SpinningDots from './components/SpinningDots'
+import GlowingIcons from './components/glowingIcons'
+import SwiperMenu from './components/swiperMenu'
+import Swiper3D from './components/swiper3D'
 
 export default function Tad() {
   console.log('RENDER - TAD')
 
   return (
-    <Grid gap="2rem" h="100vh">
+    <>
+      <NavMenu />
       <ThemeToggle />
-      <Stack>
-        {Array.from(Array(20).keys()).map(idx => (
-          <Box key={idx} padding="6" boxShadow="lg" bg="white">
-            <SkeletonCircle size="10" />
-            <SkeletonText mt="4" noOfLines={4} spacing="4" />
-          </Box>
-        ))}
-      </Stack>
-
-      <MenuButtom />
-    </Grid>
+      <RotateSquare />
+      <ScratchText />
+      <FoldCard />
+      <SideMenu />
+      <SpinningDots />
+      <SwiperMenu>
+        <GlowingIcons />
+      </SwiperMenu>
+      <Swiper3D />
+    </>
   )
 }

@@ -42,6 +42,9 @@ export default class Document extends NextDocument {
             content="/images/favicon/ms-icon-144x144.png"
           /> */}
           <meta name="theme-color" content="#FFFFFF" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+          <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js" async />
         </Head>
         <body>
           {/* Make Color mode to persists when you refresh the page. */}

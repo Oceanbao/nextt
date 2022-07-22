@@ -21,6 +21,9 @@ const NavMenu = () => {
         <Link href="/dyn">
           <MenuItem>Dyn</MenuItem>
         </Link>
+        <Link href="/tad">
+          <MenuItem>Tad</MenuItem>
+        </Link>
       </MenuList>
     </Menu>
   )

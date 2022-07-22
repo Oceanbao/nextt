@@ -1,1 +1,9 @@
-export { default } from '@modules/tad'
+import Tad from '@modules/tad'
+
+export default function Page() {
+  return (
+    <>
+      <Tad />
+    </>
+  )
+}

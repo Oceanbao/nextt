@@ -1,5 +1,7 @@
 import ThemeToggle from '@layouts/core/ThemeToggle'
 import { Stack, SkeletonCircle, SkeletonText, Grid, Box, Heading } from '@chakra-ui/react'
+import ChromaScrollBar from './components/ChromaScrollBar'
+import TracingFace from './components/TracingFace'
 
 export default function Delta() {
   return (
@@ -8,6 +10,8 @@ export default function Delta() {
       <Heading textAlign="center" mb={4}>
         DELTA
       </Heading>
+      <ChromaScrollBar />
+      <TracingFace />
       <Stack>
         {Array.from(Array(20).keys()).map(idx => (
           <Box key={idx} padding="6" boxShadow="lg" bg="white">
