@@ -7,6 +7,7 @@ export default function SwiperMenu({ children }: { children: React.ReactNode }) 
     script.type = 'text/javascript'
     // script.async = true
     script.innerHTML = `
+    (() => {
       var menuButton = document.querySelector('.menu-button');
       var openMenu = function () {
         swiper.slidePrev();
@@ -37,6 +38,7 @@ export default function SwiperMenu({ children }: { children: React.ReactNode }) 
           },
         },
       });
+    })();
     `
 
     document.body.appendChild(script)

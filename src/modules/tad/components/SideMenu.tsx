@@ -10,6 +10,8 @@ export default function SideMenu() {
   const dragBoxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const toggleRefLocal = toggleRef.current
+
     const delta = 6
     let startY: number
     let startX: number
@@ -28,15 +30,15 @@ export default function SideMenu() {
       }
     }
 
-    toggleRef.current!.addEventListener('mousedown', onMouseDown)
+    toggleRefLocal!.addEventListener('mousedown', onMouseDown)
 
-    toggleRef.current!.addEventListener('mouseup', onMouseUp)
+    toggleRefLocal!.addEventListener('mouseup', onMouseUp)
 
     return () => {
-      toggleRef.current!.removeEventListener('mousedown', onMouseDown)
-      toggleRef.current!.removeEventListener('mouseup', onMouseUp)
+      toggleRefLocal!.removeEventListener('mousedown', onMouseDown)
+      toggleRefLocal!.removeEventListener('mouseup', onMouseUp)
     }
-  })
+  }, [])
 
   return (
     <Flex className="box" justify="start" align="center" minH="100vh" bg="#6843d1" id="sideMenu" ref={dragBoxRef}>

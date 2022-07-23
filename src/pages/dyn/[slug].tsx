@@ -5,6 +5,7 @@ import MenuButtom from '@common/components/MenuBottom'
 import { Alpha, Beta, Gamma, Delta } from '@modules/dyn'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Page404 from '@modules/error'
+import SwiperMenu from '@modules/tad/components/swiperMenu'
 
 const Page = () => {
   const { query } = useRouter()
@@ -14,7 +15,9 @@ const Page = () => {
   ) : query.slug === 'beta' ? (
     <Beta />
   ) : query.slug === 'gamma' ? (
-    <Gamma />
+    <SwiperMenu>
+      <Gamma />
+    </SwiperMenu>
   ) : query.slug === 'delta' ? (
     <Delta />
   ) : (

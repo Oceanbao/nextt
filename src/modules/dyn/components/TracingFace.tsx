@@ -76,6 +76,8 @@ export default function TracingFace() {
   const boxRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const boxRefLocal = boxRef.current
+
     function eyeball(event: MouseEvent) {
       const eyes = document.querySelectorAll('.eye') as NodeListOf<HTMLDivElement>
       eyes.forEach(function (eye) {
@@ -87,9 +89,9 @@ export default function TracingFace() {
       })
     }
 
-    boxRef.current!.addEventListener('mousemove', eyeball)
+    boxRefLocal!.addEventListener('mousemove', eyeball)
 
-    return () => boxRef.current!.removeEventListener('mousemove', eyeball)
+    return () => boxRefLocal!.removeEventListener('mousemove', eyeball)
   }, [])
 
   return (
